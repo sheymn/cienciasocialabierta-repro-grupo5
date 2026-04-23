@@ -1,17 +1,17 @@
 ---
 title: "Reporte de Reproducibilidad"
-subtitle: "Artículo: [título del artículo a reproducir]
- <br><a href='https://github.com/data-soc/template-repro' target='_blank' ><i class='bi bi-github'></i></a>" # reemplazar con dirección al repositorio del proyecto
+subtitle: "Artículo: *Uncovering misperceptions of social inequalities: what matters most, objective class or subjective social status?*
+ <br><a href='https://github.com/sheymn/cienciasocialabierta-repro' target='_blank' ><i class='bi bi-github'></i></a>" # reemplazar con dirección al repositorio del proyecto
 author:
-  - name: Autor 1
+  - name: Amanda Rojo Á.
     email: mail@mail.com 
     affiliations:
       - ref: 1
-  - name: Autor 2
+  - name: Amaranta González H. 
     email: mail@mail.com 
     affiliations:
       - ref: 1
-  - name: Autor 3
+  - name: Elena Yáñez Rodríguez
     email: mail@mail.com 
     affiliations:
       - ref: 1 
