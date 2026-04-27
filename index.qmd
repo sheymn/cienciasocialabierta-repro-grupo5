@@ -3,12 +3,12 @@ title: "Reporte de Reproducibilidad"
 subtitle: "Artículo: *Uncovering misperceptions of social inequalities: what matters most, objective class or subjective social status?*
  <br><a href='https://github.com/sheymn/cienciasocialabierta-repro' target='_blank' ><i class='bi bi-github'></i></a>" # reemplazar con dirección al repositorio del proyecto
 author:
-  - name: Amanda Rojo Á.
-    email: mail@mail.com 
+  - name: Amanda Rojo Ávila
+    email: amanda.rojo@ug.uchile.cl 
     affiliations:
       - ref: 1
-  - name: Amaranta González H. 
-    email: mail@mail.com 
+  - name: Amaranta González Herrera
+    email: amaranta.gonzalez@ug.uchile.cl 
     affiliations:
       - ref: 1
   - name: Elena Yáñez Rodríguez
@@ -79,7 +79,10 @@ Seleccionar un resultado específico del artículo (por ejemplo, una tabla de re
 
 ## Resultado a reproducir
 
-- Imagen de tabla(s), figura(s) o resultado específico del artículo seleccionado, junto a una breve descripción.
+La figura que se busca reproducir corresponde a un gráfico de barras apiladas que muestra la distribución de la percepción de desigualdad social en función de la clase social objetiva y el estatus social subjetivo. El gráfico se divide en dos paneles, uno para cada variable independiente, y muestra la proporción de personas que perciben desigualdad social en cada categoría de clase social objetiva y estatus social subjetivo.
+
+![](input/images/resultado_reproducir.png)
+
 
 ## Proceso de reproducción
 
