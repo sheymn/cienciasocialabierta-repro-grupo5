@@ -55,18 +55,9 @@ pacman::p_load(dplyr,       # Manipulacion de datos
 
 ## Datos
 
-Para este ejemplo se va utilizar una base de datos proveniente del paquete `carData`: 
-
-> The Chile data frame has 2700 rows and 8 columns. The data are from a national survey conducted in April and May of 1988 by FLACSO/Chile. There are some missing data.
-
 ```{r echo=TRUE}
-df<- carData::Chile
-df1 <- df %>% select(zona=region,
-                     poblacion=population,
-                     sexo=sex,
-                     edad=age,
-                     educ=education,
-                     statusquo)
+data <- read_dta("input/data/original/ZA8790_v1-0-0b.dta")
+
 ```
 
 # Preparación
@@ -83,128 +74,137 @@ En esta sección se realizará la preparación de datos. Se sugiere seguir los s
 
 ## Variables individuales
 
-### Edad 
+### Diagrama de clases sociales
+```{r clases_diagrama}
+
+data$v54 <- as.numeric(haven::zap_labels(data$v54))
+
+data$v54[data$v54 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+
+sjmisc::descr(data$v54)
+
+```
+
+### Posición en escalera social 
+```{r TOPBOT}
+sjmisc::descr(data$TOPBOT)
+
+data$topbot <- as.numeric(haven::zap_labels(data$TOPBOT))
+
+data$topbot[data$topbot %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+
+sjmisc::descr(data$TOPBOT)
+
+
+```
+
+### Clase social
+
+```{r clase social}
+sjmisc::descr(data$ISCO88)
+
+data$isco88 <- as.numeric(haven::zap_labels(data$ISCO88))
+
+data$isco88[data$isco88 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+
+```
+
+## Variables de control
+
+### Edad
+
 ```{r edad}
-sjmisc::descr(df1$edad)
-df1$edadcat <- car::recode(var = df1$edad,
-                           recodes = "18:24=1;25:44=2;45:64=3;65:70=4",
-                           as.factor = T) 
-df1$edadcat <- set_labels(x = df1$edadcat,
-                          labels = c("18 a 24 años" = 1,
-                                     "25 a 44 años" = 2,
-                                     "45 a 65 años" = 3,
-                                     "65 años o más" = 4))
-df1$edadcat <- set_label(df1$edadcat,label = "Tramos de edad")
-sjmisc::frq(df1$edadcat,out = "txt")
+sjmisc::descr(data$AGE)
+
+data$AGE <- as.numeric(haven::zap_labels(data$AGE))
+
+data$AGE[data$AGE %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+
+sjmisc::descr(data$AGE)
+
 ```
 
-### Sexo 
+### Sexo
+
 ```{r sexo}
-sjmisc::frq(df1$sexo)
-df1$mujer <- car::recode(var = df1$sexo,
-                           recodes = "'F'=1;'M'=0",
-                           as.factor = T) 
+sjmisc::descr(data$SEX)
 
-df1$mujer <- set_labels(x = df1$mujer,
-                          labels = c("Hombre" = 0,
-                                     "Mujer" = 1))
-df1$mujer <- set_label(df1$mujer,label = "Sexo entrevistado")
-sjmisc::frq(df1$mujer,out = "txt")
+data$SEX <- as.numeric(haven::zap_labels(data$SEX))
+
+data$SEX[data$SEX %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+
+sjmisc::descr(data$SEX)
+
 ```
 
-### Nivel educacional
+### Ocupacion padre
 
-```{r}
-sjmisc::frq(df1$educ)
-df1$educ <- car::recode(df1$educ,
-                        recodes = "'P'=1;'S'=2;'PS'=3",
-                        as.factor = T)
+```{r ocupacion padre} 
 
-df1$educ <- set_labels(df1$educ,labels = c("Primaria"=1,
-                                           "Secundaria"=2,
-                                           "Post-secundaria"=3))
-df1$educ <- set_label(df1$educ,label = "Nivel educacional")
-sjmisc::frq(df1$educ)
+sjmisc::descr(data$v64)
+
+data$v64 <- as.numeric(haven::zap_labels(data$v64))
+
+data$v64[data$v64 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+
+sjmisc::descr(data$v64)
+
 ```
 
-### Apoyo statusquo
+### Ocupacion madre
 
-```{r}
-sjmisc::descr(df1$statusquo)
-df1$statusquo <- set_label(df1$statusquo,label = "Escala de apoyo al status-quo")
-sjmisc::descr(df1$statusquo)
-```
+```{r ocupacion madre}
 
-## Variables contextuales
+sjmisc::descr(data$v66)
 
-### Zona
+data$v66 <- as.numeric(haven::zap_labels(data$v66))
 
-```{r zona}
-sjmisc::frq(df1$zona)
-df1$zona <- set_labels(x = df1$zona,
-                          labels = c("Centro" = "C",
-                                     "Metropolitana Santiago" = "M",
-                                     "Norte"="N",
-                                     "Sur"="S",
-                                     "Santiago ciudad"='SA'))
-df1$zona <- set_label(df1$zona,label = "Zona geográfica")
-sjmisc::frq(df1$zona,out = "txt")
-```
+data$v66[data$v66 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
 
-### Proporcion de mujeres x zona
-```{r}
-tab_xtab(var.row = df1$zona, # Filas= zona
-         var.col = df1$mujer,# columna= sexo 
-         show.obs = FALSE,   
-         show.row.prc = T)
-df1 %>% group_by(zona) %>% summarise(propmuj=mean(as.numeric(mujer))-1) 
+sjmisc::descr(data$v66)
 
-prop.muj<- df1 %>%
-  group_by(zona, mujer) %>%
-  summarise(n = n()) %>%
-  mutate(propmuj = n / sum(n)) %>%
-  filter(mujer==1) %>% 
-  ungroup() %>% 
-  select(zona,propmuj)
-
-df1 <- left_join(df1,prop.muj,by="zona")
-df1$propmuj <- set_label(df1$propmuj,label = "Proporción de mujeres por zona geográfica")
-sjmisc::descr(df1$propmuj)
-```
-
-### Población por zona
-
-```{r poblacion}
-sjmisc::frq(df1$poblacion)
-df1$poblacion <- set_label(df1$poblacion,label = "Población por zona geofráfica")
-sjmisc::frq(df1$poblacion,out = "txt")
 ```
 
 # Seleccionar variables
 
 ```{r}
-df_final<- df1 %>%
-  select(zona,
-         poblacion,
-         mujer,
-         edadcat,
-         educ,
-         statusquo)
+data_procesada<- data%>%
+  select(v54,
+         TOPBOT,
+         ISCO88,
+         INCOME,
+         SEX,
+         AGE,
+         v64,
+         v66)
+
+data_procesada <- data_procesada %>%
+  rename(
+    clase_diagrama= v54,
+    escala_topbot = TOPBOT,
+    ocupacion = ISCO88,
+    ingreso = INCOME,
+    sexo = SEX,
+    edad = AGE,
+    ocupacion_padre = v64,
+    ocupacion_madre = v66
+  )
+
 ```
 
 # Resumen 
 
 ```{r,results='asis', echo=FALSE}
 st_css() # esto configura el css de dfsummary
-print(dfSummary(df_final),
+print(dfSummary(data_procesada),
       method = "render")
-view_df(df_final)
+view_df(data_procesada)
 ```
 
 # Guardar datos
 
 ```{r}
-save(df_final,file = "../input/data/proc/df_final.Rdata")
+save(data_procesada,file = "input/data/proc/data_procesada.Rdata")
 ```
 
 

@@ -55,7 +55,9 @@ pacman::p_load(dplyr,       # Manipulacion de datos
 
 ## Datos
 ```{r}
-load(file = "../input/data/proc/df_final.Rdata" )
+load(file = ".../input/data/proc/data_procesada.Rdata")
+
+
 ```
 
 # Análisis
