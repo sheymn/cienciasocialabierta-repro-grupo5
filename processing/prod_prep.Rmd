@@ -56,6 +56,7 @@ pacman::p_load(dplyr,       # Manipulacion de datos
 ## Datos
 
 ```{r echo=TRUE}
+
 data <- read_dta("input/data/original/ZA8790_v1-0-0b.dta")
 
 ```
@@ -87,27 +88,41 @@ sjmisc::descr(data$v54)
 
 ### Posición en escalera social 
 ```{r TOPBOT}
+
+data$TOPBOT <- as.numeric(haven::zap_labels(data$TOPBOT))
+
+data$TOPBOT[data$TOPBOT %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+
 sjmisc::descr(data$TOPBOT)
-
-data$topbot <- as.numeric(haven::zap_labels(data$TOPBOT))
-
-data$topbot[data$topbot %in% c(-9, -8, -7, -4, -3, -1)] <- NA
-
-sjmisc::descr(data$TOPBOT)
-
 
 ```
 
-### Clase social
-
-```{r clase social}
+### ISCO88
+```{r ISCO88}
 sjmisc::descr(data$ISCO88)
 
-data$isco88 <- as.numeric(haven::zap_labels(data$ISCO88))
+data$ISCO88 <- as.numeric(haven::zap_labels(data$ISCO88))
 
-data$isco88[data$isco88 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+data$ISCO88[data$ISCO88 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+
+sjmisc::descr(data$ISCO88)
 
 ```
+
+### v69
+```{r v69}
+sjmisc::descr(data$v69)
+
+data$v69 <- as.numeric(haven::zap_labels(data$v69))
+
+data$v69[data$v69 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+
+sjmisc::descr(data$v69)
+
+
+```
+
+
 
 ## Variables de control
 
@@ -167,7 +182,7 @@ sjmisc::descr(data$v66)
 
 # Seleccionar variables
 
-```{r}
+```{r seleccionar variables} 
 data_procesada<- data%>%
   select(v54,
          TOPBOT,
@@ -176,21 +191,124 @@ data_procesada<- data%>%
          SEX,
          AGE,
          v64,
-         v66)
+         v66,
+         v69)
 
+
+```
+
+# Recodificación ISCO88 y v69 en clase social
+```{r clase social}
+
+
+data_procesada <- data_procesada %>%
+  mutate(
+    isco_grupos = floor(ISCO88 / 1000))
+
+
+
+data_procesada <- data_procesada %>%
+  mutate(
+    clase_egp = case_when(
+      isco_grupos == 1 ~ "Higher-grade managers and professionals",
+      isco_grupos == 2 ~ "Lower-grade managers and professionals",
+      isco_grupos %in% c(3, 4) ~ "Intermediate occupations",
+      v69 %in% c(3, 4) & isco_grupos %in% 1:5 ~ "Self-employed and small employers",
+      isco_grupos %in% c(6, 7, 8, 9) ~ "Working class",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  mutate(clase_egp = factor(clase_egp))
+
+
+table(data_procesada$clase_egp, useNA = "always")
+
+sjmisc::frq(data_procesada$clase_egp)
+
+
+sjmisc::frq(data$clase_egp)
+
+```
+
+# Recodificación de v66 y v64 en clase social de origen
+
+```{r clase social de origen}
+
+data_procesada <- data_procesada %>%
+  mutate(
+
+    padre_grupo = floor(v64 / 1000),
+    madre_grupo = floor(v66/ 1000),
+    
+    
+    clase_padre = case_when(
+      padre_grupo == 1 ~ "Higher-grade managers and professionals",
+      padre_grupo == 2 ~ "Lower-grade managers and professionals",
+      padre_grupo %in% c(3, 4) ~ "Intermediate occupations",
+      padre_grupo == 5 ~ "Self-employed and small employers",
+      padre_grupo %in% c(6, 7, 8, 9) ~ "Working class",
+      TRUE ~ NA_character_
+    ),
+    
+    clase_madre = case_when(
+      madre_grupo == 1 ~ "Higher-grade managers and professionals",
+      madre_grupo == 2 ~ "Lower-grade managers and professionals",
+      madre_grupo %in% c(3, 4) ~ "Intermediate occupations",
+      madre_grupo == 5 ~ "Self-employed and small employers",
+      madre_grupo %in% c(6, 7, 8, 9) ~ "Working class",
+      TRUE ~ NA_character_
+    )
+  )
+
+
+orden_clases <- c(
+  "Working class" = 1,
+  "Self-employed and small employers" = 2,
+  "Intermediate occupations" = 3,
+  "Lower-grade managers and professionals" = 4,
+  "Higher-grade managers and professionals" = 5
+)
+
+data_procesada <- data_procesada %>%
+  mutate(
+    padre_num = orden_clases[clase_padre],
+    madre_num = orden_clases[clase_madre],
+    
+    clase_origen_num = pmax(padre_num, madre_num, na.rm = TRUE),
+    
+    clase_origen = case_when(
+      clase_origen_num == 5 ~ "Higher-grade managers and professionals",
+      clase_origen_num == 4 ~ "Lower-grade managers and professionals",
+      clase_origen_num == 3 ~ "Intermediate occupations",
+      clase_origen_num == 2 ~ "Self-employed and small employers",
+      clase_origen_num == 1 ~ "Working class",
+      TRUE ~ NA_character_
+    ),
+    
+    clase_origen = factor(clase_origen)
+  )
+
+
+table(data_procesada$clase_origen, useNA = "always")
+sjmisc::frq(data_procesada$clase_origen)
+
+
+
+```
+
+```{r renombrar variables}
 data_procesada <- data_procesada %>%
   rename(
     clase_diagrama= v54,
     escala_topbot = TOPBOT,
-    ocupacion = ISCO88,
     ingreso = INCOME,
     sexo = SEX,
     edad = AGE,
-    ocupacion_padre = v64,
-    ocupacion_madre = v66
   )
 
+
 ```
+
 
 # Resumen 
 
@@ -199,6 +317,7 @@ st_css() # esto configura el css de dfsummary
 print(dfSummary(data_procesada),
       method = "render")
 view_df(data_procesada)
+
 ```
 
 # Guardar datos
