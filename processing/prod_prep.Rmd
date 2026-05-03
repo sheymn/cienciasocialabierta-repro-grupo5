@@ -42,6 +42,10 @@ div.tocify {
 
 ```{r}
 if (!require("pacman")) install.packages("pacman") # instalar pacman
+
+### instalar paquete para operacionalzar clase
+# pak::pak("DiogoFerrari/occupar")
+ 
                             # cargar librerias
 pacman::p_load(dplyr,       # Manipulacion de datos 
                haven,       # importar datos en .dta o .sav
@@ -49,7 +53,8 @@ pacman::p_load(dplyr,       # Manipulacion de datos
                sjlabelled,  # etiquetado de variables
                sjmisc,      # descriptivos y frecuencias
                sjPlot,      # tablas, plots y descriptivos
-               summarytools,# resumen de dataframe
+               summarytools,
+               occupar # resumen de dataframe
                )
 ```
 
@@ -59,6 +64,28 @@ pacman::p_load(dplyr,       # Manipulacion de datos
 
 data <- read_dta("input/data/original/ZA8790_v1-0-0b.dta")
 
+# Seleccionar variables
+data_procesada<- data%>%
+  select(v54,
+         TOPBOT,
+         ISCO88,
+         INCOME,
+         SEX,
+         AGE,
+         v64, 
+         v66,
+         v69, # tipo de empleo 
+         SELFEMP, # Self-employed
+         WRKSUP, # Supervisar
+         MAINSTAT, 
+         WEIGHT,
+         country,
+         year
+         )
+
+# Valores perdidos como NAs
+data <- data %>%
+  mutate(across(everything(), ~ ifelse(. %in% c(-9, -8, -7, -4, -3, -1), NA, .)))
 ```
 
 # Preparación
@@ -80,9 +107,9 @@ En esta sección se realizará la preparación de datos. Se sugiere seguir los s
 
 data$v54 <- as.numeric(haven::zap_labels(data$v54))
 
-data$v54[data$v54 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+#data$v54[data$v54 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
 
-sjmisc::descr(data$v54)
+sjmisc::frq(data$v54)
 
 ```
 
@@ -91,7 +118,7 @@ sjmisc::descr(data$v54)
 
 data$TOPBOT <- as.numeric(haven::zap_labels(data$TOPBOT))
 
-data$TOPBOT[data$TOPBOT %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+# data$TOPBOT[data$TOPBOT %in% c(-9, -8, -7, -4, -3, -1)] <- NA
 
 sjmisc::descr(data$TOPBOT)
 
@@ -101,11 +128,11 @@ sjmisc::descr(data$TOPBOT)
 ```{r ISCO88}
 sjmisc::descr(data$ISCO88)
 
-data$ISCO88 <- as.numeric(haven::zap_labels(data$ISCO88))
+#data$ISCO88 <- as.numeric(haven::zap_labels(data$ISCO88))
 
 data$ISCO88[data$ISCO88 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
 
-sjmisc::descr(data$ISCO88)
+sjmisc::frq(data$ISCO88)
 
 ```
 
@@ -117,7 +144,7 @@ data$v69 <- as.numeric(haven::zap_labels(data$v69))
 
 data$v69[data$v69 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
 
-sjmisc::descr(data$v69)
+sjmisc::frq(data$v69)
 
 
 ```
@@ -158,11 +185,11 @@ sjmisc::descr(data$SEX)
 
 sjmisc::descr(data$v64)
 
-data$v64 <- as.numeric(haven::zap_labels(data$v64))
+# data$v64 <- as.numeric(haven::zap_labels(data$v64))
 
-data$v64[data$v64 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+# data$v64[data$v64 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
 
-sjmisc::descr(data$v64)
+sjmisc::descr(data$ISCO88)
 
 ```
 
@@ -170,11 +197,10 @@ sjmisc::descr(data$v64)
 
 ```{r ocupacion madre}
 
-sjmisc::descr(data$v66)
 
-data$v66 <- as.numeric(haven::zap_labels(data$v66))
+# data$v66 <- as.numeric(haven::zap_labels(data$v66))
 
-data$v66[data$v66 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
+# data$v66[data$v66 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
 
 sjmisc::descr(data$v66)
 
@@ -183,52 +209,60 @@ sjmisc::descr(data$v66)
 # Seleccionar variables
 
 ```{r seleccionar variables} 
-data_procesada<- data%>%
-  select(v54,
-         TOPBOT,
-         ISCO88,
-         INCOME,
-         SEX,
-         AGE,
-         v64,
-         v66,
-         v69)
+
 
 
 ```
 
-# Recodificación ISCO88 y v69 en clase social
-```{r clase social}
 
+# ESeC (Clase social objetva)
 
+```{r}
+# 1. Calculamos la ESeC
 data_procesada <- data_procesada %>%
   mutate(
-    isco_grupos = floor(ISCO88 / 1000))
+    esec_list = isco88toESeC(
+      isco88 = as.numeric(as.character(ISCO88)),
+      self.employed = as.numeric(as.character(SELFEMP)),
+      supervisor = as.numeric(as.character(WRKSUP)),
+      employed = 1, unemployed = 0, n.employees = 0, n.classes = 10
+    ),
+    
+    # EXTRAER EL CÓDIGO (La parte "difícil" hecha simple)
+    # Usamos unlist para sacar el primer valor de cada lista de forma masiva
+    esec_num = as.numeric(purrr::map_dbl(esec_list, 1)) 
+  )
 
-
-
+# 2. Colapsar a esquema de 5 clases
 data_procesada <- data_procesada %>%
-  mutate(
-    clase_egp = case_when(
-      isco_grupos == 1 ~ "Higher-grade managers and professionals",
-      isco_grupos == 2 ~ "Lower-grade managers and professionals",
-      isco_grupos %in% c(3, 4) ~ "Intermediate occupations",
-      v69 %in% c(3, 4) & isco_grupos %in% 1:5 ~ "Self-employed and small employers",
-      isco_grupos %in% c(6, 7, 8, 9) ~ "Working class",
-      TRUE ~ NA_character_
-    )
-  ) %>%
-  mutate(clase_egp = factor(clase_egp))
+  mutate(clase_social_5 = case_match(esec_num,
+    1       ~ "Higher-grade managers/prof",
+    2       ~ "Lower-grade managers/prof",
+    c(3, 6) ~ "Intermediate occupations",
+    c(4, 5) ~ "Self-employed/Small employers",
+    c(7, 8, 9) ~ "Working class",
+    .default = NAs
+  ))
 
+# ordenar valores
+data_procesada$clase_social_5 <- factor(data_procesada$clase_social_5, 
+  levels = c("Higher-grade managers/prof", 
+             "Lower-grade managers/prof", 
+             "Intermediate occupations", 
+             "Self-employed/Small employers", 
+             "Working class"))
 
-table(data_procesada$clase_egp, useNA = "always")
+# Frecuencia
+sjmisc::frq(data_procesada$clase_social_5, show.na = TRUE)
 
-sjmisc::frq(data_procesada$clase_egp)
-
-
-sjmisc::frq(data$clase_egp)
-
+# # Ver cuáles son los ISCO que más generan NA
+# data_procesada %>% 
+#   filter(is.na(clase_social_5) & !is.na(ISCO88)) %>% 
+#   group_by(ISCO88) %>% 
+#   tally(sort = TRUE) %>% 
+#   head(10)
 ```
+
 
 # Recodificación de v66 y v64 en clase social de origen
 
@@ -291,8 +325,6 @@ data_procesada <- data_procesada %>%
 
 table(data_procesada$clase_origen, useNA = "always")
 sjmisc::frq(data_procesada$clase_origen)
-
-
 
 ```
 
