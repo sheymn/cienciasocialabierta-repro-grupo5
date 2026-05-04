@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
-
+<meta charset="UTF-8">
+<meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Amanda Rojo Ávila">
 <meta name="author" content="Amaranta González Herrera">
 <meta name="author" content="Elena Yáñez Rodríguez">
-
 <title>Reporte de Reproducibilidad</title>
 <style>
 /* Default styles provided by pandoc.
@@ -83,7 +79,6 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
 <script src="index_files/libs/clipboard/clipboard.min.js"></script>
 <script src="index_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="index_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -91,11 +86,10 @@ div.csl-indent {
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="index_files/libs/quarto-html/anchor.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap-15fe1e483d0269a17ac037d2fcf7f448.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<style>
+<link href="index_files/libs/bootstrap/bootstrap-fe7ae657717f5d70a53216e1981eb9e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><style>
   h1.title {
     color: #ffffff !important;
   }
@@ -103,14 +97,10 @@ div.csl-indent {
     color: #ffffff !important;
   }x
 </style>
-
-
 </head>
-
 <body class="quarto-light">
 
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Reporte de Reproducibilidad</h1>
             <p class="subtitle lead">Artículo: <em>Uncovering misperceptions of social inequalities: what matters most, objective class or subjective social status?</em> <br><a href="https://github.com/sheymn/cienciasocialabierta-repro" target="_blank"><i class="bi bi-github"></i></a></p>
@@ -163,242 +153,194 @@ div.csl-indent {
   
   </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
-    <h2 id="toc-title">Contenidos</h2>
+  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2"><h2 id="toc-title">Contenidos</h2>
    
   <ul class="collapse">
-  <li><a href="#selección-de-artículoreporte" id="toc-selección-de-artículoreporte" class="nav-link active" data-scroll-target="#selección-de-artículoreporte"><span class="header-section-number">1</span> Selección de artículo/reporte</a>
+<li>
+<a href="#selecci%C3%B3n-de-art%C3%ADculoreporte" id="toc-selección-de-artículoreporte" class="nav-link active" data-scroll-target="#selecci%C3%B3n-de-art%C3%ADculoreporte"><span class="header-section-number">1</span> Selección de artículo/reporte</a>
   <ul class="collapse">
-  <li><a href="#artículo-seleccionado" id="toc-artículo-seleccionado" class="nav-link" data-scroll-target="#artículo-seleccionado"><span class="header-section-number">1.1</span> Artículo seleccionado</a></li>
-  <li><a href="#resumen-del-artículo-seleccionado" id="toc-resumen-del-artículo-seleccionado" class="nav-link" data-scroll-target="#resumen-del-artículo-seleccionado"><span class="header-section-number">1.2</span> Resumen del artículo seleccionado</a></li>
-  <li><a href="#justificación-de-la-selección-del-artículo" id="toc-justificación-de-la-selección-del-artículo" class="nav-link" data-scroll-target="#justificación-de-la-selección-del-artículo"><span class="header-section-number">1.3</span> Justificación de la selección del artículo</a></li>
-  </ul></li>
-  <li><a href="#evaluación-de-reproducibilidad" id="toc-evaluación-de-reproducibilidad" class="nav-link" data-scroll-target="#evaluación-de-reproducibilidad"><span class="header-section-number">2</span> Evaluación de reproducibilidad</a></li>
-  <li><a href="#análisis-reproducible" id="toc-análisis-reproducible" class="nav-link" data-scroll-target="#análisis-reproducible"><span class="header-section-number">3</span> Análisis reproducible</a>
+<li><a href="#art%C3%ADculo-seleccionado" id="toc-artículo-seleccionado" class="nav-link" data-scroll-target="#art%C3%ADculo-seleccionado"><span class="header-section-number">1.1</span> Artículo seleccionado</a></li>
+  <li><a href="#resumen-del-art%C3%ADculo-seleccionado" id="toc-resumen-del-artículo-seleccionado" class="nav-link" data-scroll-target="#resumen-del-art%C3%ADculo-seleccionado"><span class="header-section-number">1.2</span> Resumen del artículo seleccionado</a></li>
+  <li><a href="#justificaci%C3%B3n-de-la-selecci%C3%B3n-del-art%C3%ADculo" id="toc-justificación-de-la-selección-del-artículo" class="nav-link" data-scroll-target="#justificaci%C3%B3n-de-la-selecci%C3%B3n-del-art%C3%ADculo"><span class="header-section-number">1.3</span> Justificación de la selección del artículo</a></li>
+  </ul>
+</li>
+  <li><a href="#evaluaci%C3%B3n-de-reproducibilidad" id="toc-evaluación-de-reproducibilidad" class="nav-link" data-scroll-target="#evaluaci%C3%B3n-de-reproducibilidad"><span class="header-section-number">2</span> Evaluación de reproducibilidad</a></li>
+  <li>
+<a href="#an%C3%A1lisis-reproducible" id="toc-análisis-reproducible" class="nav-link" data-scroll-target="#an%C3%A1lisis-reproducible"><span class="header-section-number">3</span> Análisis reproducible</a>
   <ul class="collapse">
-  <li><a href="#resultado-a-reproducir" id="toc-resultado-a-reproducir" class="nav-link" data-scroll-target="#resultado-a-reproducir"><span class="header-section-number">3.1</span> Resultado a reproducir</a></li>
-  <li><a href="#proceso-de-reproducción" id="toc-proceso-de-reproducción" class="nav-link" data-scroll-target="#proceso-de-reproducción"><span class="header-section-number">3.2</span> Proceso de reproducción</a></li>
-  </ul></li>
+<li><a href="#resultado-a-reproducir" id="toc-resultado-a-reproducir" class="nav-link" data-scroll-target="#resultado-a-reproducir"><span class="header-section-number">3.1</span> Resultado a reproducir</a></li>
+  <li><a href="#proceso-de-reproducci%C3%B3n" id="toc-proceso-de-reproducción" class="nav-link" data-scroll-target="#proceso-de-reproducci%C3%B3n"><span class="header-section-number">3.2</span> Proceso de reproducción</a></li>
+  </ul>
+</li>
   <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">4</span> Conclusiones</a></li>
   <li><a href="#recomendaciones" id="toc-recomendaciones" class="nav-link" data-scroll-target="#recomendaciones"><span class="header-section-number">5</span> Recomendaciones</a></li>
   <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">6</span> Referencias</a></li>
-  <li><a href="#apéndice" id="toc-apéndice" class="nav-link" data-scroll-target="#apéndice"><span class="header-section-number">7</span> Apéndice</a>
+  <li>
+<a href="#ap%C3%A9ndice" id="toc-apéndice" class="nav-link" data-scroll-target="#ap%C3%A9ndice"><span class="header-section-number">7</span> Apéndice</a>
   <ul class="collapse">
-  <li><a href="#material-suplementario" id="toc-material-suplementario" class="nav-link" data-scroll-target="#material-suplementario"><span class="header-section-number">7.1</span> Material suplementario</a></li>
-  <li><a href="#código" id="toc-código" class="nav-link" data-scroll-target="#código"><span class="header-section-number">7.2</span> Código</a></li>
-  </ul></li>
+<li><a href="#material-suplementario" id="toc-material-suplementario" class="nav-link" data-scroll-target="#material-suplementario"><span class="header-section-number">7.1</span> Material suplementario</a></li>
+  <li><a href="#c%C3%B3digo" id="toc-código" class="nav-link" data-scroll-target="#c%C3%B3digo"><span class="header-section-number">7.2</span> Código</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</li>
+  </ul><div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
-<main class="content quarto-banner-title-block" id="quarto-document-content">
-
-
-
-
-
-<section id="selección-de-artículoreporte" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Selección de artículo/reporte</h1>
-<section id="artículo-seleccionado" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="artículo-seleccionado"><span class="header-section-number">1.1</span> Artículo seleccionado</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="selección-de-artículoreporte" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> Selección de artículo/reporte</h1>
+<section id="artículo-seleccionado" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="artículo-seleccionado">
+<span class="header-section-number">1.1</span> Artículo seleccionado</h2>
 <p>Se seleccionó el siguiente artículo para el ejercicio de reproducibilidad: Uncovering misperceptions of social inequalities: what matters most, objective class or subjective social status? E la rtículo corresponde a <span class="citation" data-cites="melli_uncovering_2025">Melli &amp; Azzollini (<a href="#ref-melli_uncovering_2025" role="doc-biblioref">2025</a>)</span>. El cuál, fue realizado por Giacomo Melli y Leo Azzollini, sociologos italianos. El artículo se publicó en la revista <em>Frontiers in Sociology</em> en el año 2025. Y su DOI es: https://doi.org/10.3389/fsoc.2025.1617413</p>
-</section>
-<section id="resumen-del-artículo-seleccionado" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="resumen-del-artículo-seleccionado"><span class="header-section-number">1.2</span> Resumen del artículo seleccionado</h2>
+</section><section id="resumen-del-artículo-seleccionado" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="resumen-del-artículo-seleccionado">
+<span class="header-section-number">1.2</span> Resumen del artículo seleccionado</h2>
 <p>El artículo se centra en investigar las percepciones de desigualdad social en relación con la clase social objetiva y el estatus social subjetivo. Utilizando datos del International Social Survey Programme (ISSP) que abarcan 35 países y 96 años-entre 1992 y 2019, los autores analizan cómo la percepción de la posición social, tanto la objetiva como la subjetiva, influyen en la percepción de desigualdad. Los resultados del artículo reflejan que tanto la clase social objetiva como el estatus social subjetivo son importantes para comprender las percepciones de desigualdad, pero el estatus social subjetivo tiene un impacto más fuerte en la percepción de desigualdad que la clase social objetiva.</p>
-</section>
-<section id="justificación-de-la-selección-del-artículo" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="justificación-de-la-selección-del-artículo"><span class="header-section-number">1.3</span> Justificación de la selección del artículo</h2>
+</section><section id="justificación-de-la-selección-del-artículo" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="justificación-de-la-selección-del-artículo">
+<span class="header-section-number">1.3</span> Justificación de la selección del artículo</h2>
 <p>El artículo fue seleccionado porque cumple con al menos dos criterios clave para el ejercicio de reproducibilidad: (1) los datos están disponibles públicamente, y (2) la metodología está descrita con suficiente detalle. Aunque el código de análisis no fue proporcionado por los autores, la claridad metodológica permite intentar una reproducción parcial de los resultados. Además, el tema del artículo es relevante para la sociología contemporánea, ya que aborda la percepción de desigualdad social, un tema de gran interés en la investigación sociológica actual. La disponibilidad de datos del ISSP también facilita el acceso a los datos necesarios para intentar reproducir los resultados del estudio.</p>
-</section>
-</section>
-<section id="evaluación-de-reproducibilidad" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Evaluación de reproducibilidad</h1>
+</section></section><section id="evaluación-de-reproducibilidad" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> Evaluación de reproducibilidad</h1>
 <p>Análisis detallado del artículo seleccionado, evaluando los siguientes aspectos:</p>
 <ul>
 <li><p><strong>Disponibilidad de datos</strong>: El artículo indica que los datos utilizados provienen del International Social Survey Programme (ISSP), específicamente de los módulos de desigualdad social de los años 1992, 1999, 2009 y 2019. Los datos se encuentran disponibles públicamente en el repositorio GESIS. El equipo accedió a la base de datos sin mayores dificultades, si bien el artículo no entrega un enlace directo a la versión exacta de los datos, estos son accesibles siguiendo los procedimientos estándar del ISSP.</p></li>
 <li><p><strong>Disponibilidad de código</strong>: El artículo no incluye el código de análisis utilizado por los autores. Se contactó a los autores por correo electrónico para solicitar los scripts empleados en la limpieza, procesamiento y generación de resultados y figuras. Hasta la fecha no se ha obtenido respuesta. La ausencia del código limita la posibilidad de una reproducción exacta del estudio, ya que no es posible verificar los pasos analíticos específicos ni las decisiones de recodificación tomadas por los autores</p></li>
 <li><p><strong>Documentación</strong>: El artículo describe los métodos y procedimientos estadísticos de forma general, incluyendo el uso de modelos ordinales generalizados y la inclusión de efectos fijos por país-ola. Sin embargo, la documentación presenta una limitación importante: el artículo no especifica qué variables de la base de datos del ISSP fueron utilizadas para construir los indicadores de “clase social objetiva” y “estatus social subjetivo”. Tampoco se detallan las recodificaciones aplicadas ni los criterios para excluir valores perdidos. Esta falta de información obligó al equipo a tomar decisiones propias sobre la selección y transformación de variables. Por tanto, la documentación es insuficiente para una replicación exacta.</p></li>
 <li><p><strong>Transparencia</strong>: El artículo declara que la investigación contó con financiamiento del Departamento de Sociología e Investigación Social de la Universidad de Trento. Además, los autores señalan no tener conflictos de interés. La revista Frontiers in Sociology sigue estándares de transparencia que exigen declarar estas cuestiones, lo cual fue cumplido por los autores.</p></li>
-</ul>
-</section>
-<section id="análisis-reproducible" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Análisis reproducible</h1>
-<section id="resultado-a-reproducir" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="resultado-a-reproducir"><span class="header-section-number">3.1</span> Resultado a reproducir</h2>
+</ul></section><section id="análisis-reproducible" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> Análisis reproducible</h1>
+<section id="resultado-a-reproducir" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="resultado-a-reproducir">
+<span class="header-section-number">3.1</span> Resultado a reproducir</h2>
 <p>La figura que se busca reproducir corresponde a un gráfico de barras apiladas que muestra la distribución de la percepción de desigualdad social en función de la clase social objetiva y el estatus social subjetivo. El gráfico se divide en dos paneles, uno para cada variable independiente, y muestra la proporción de personas que perciben desigualdad social en cada categoría de clase social objetiva y estatus social subjetivo.</p>
 <p><img src="input/images/resultado_reproducir.png" class="img-fluid"></p>
-</section>
-<section id="proceso-de-reproducción" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="proceso-de-reproducción"><span class="header-section-number">3.2</span> Proceso de reproducción</h2>
+</section><section id="proceso-de-reproducción" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="proceso-de-reproducción">
+<span class="header-section-number">3.2</span> Proceso de reproducción</h2>
 <ul>
 <li>Descripción detallada del proceso seguido para reproducir el resultado seleccionado, incluyendo los pasos realizados, las herramientas utilizadas, y cualquier ajuste necesario para lograr la reproducción. Incluye las siguientes sub secciones:</li>
 </ul>
-<section id="procesamiento" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="procesamiento"><span class="header-section-number">3.2.1</span> Procesamiento</h3>
+<section id="procesamiento" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="procesamiento">
+<span class="header-section-number">3.2.1</span> Procesamiento</h3>
 <ul>
 <li><p>Incluye el código utilizado para procesar los datos, junto con una explicación de cada paso.</p></li>
 <li><p>Los datos originales deben ser llamados desde input/data/original, el código de procesamiento se debe incluir en este mismo archivo (reporte-repro.qmd).</p></li>
 </ul>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar librerias</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>) <span class="co"># instalar pacman</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                            <span class="co"># cargar librerias</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr,       <span class="co"># Manipulacion de datos </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               haven,       <span class="co"># importar datos en .dta o .sav</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               car,         <span class="co"># recodificar variables</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               sjlabelled,  <span class="co"># etiquetado de variables</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               sjmisc,      <span class="co"># descriptivos y frecuencias</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>               sjPlot,      <span class="co"># tablas, plots y descriptivos</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>               summarytools,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>               knitr <span class="co"># resumen de dataframe</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>               )</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar datos</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>issp <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"input/data/original/ZA8790_v1-0-0.sav"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores perdidos</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>issp <span class="ot">&lt;-</span> issp <span class="sc">%&gt;%</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">ifelse</span>(. <span class="sc">%in%</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">9</span>, <span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">7</span>, <span class="sc">-</span><span class="dv">4</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="cn">NA</span>, .)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold"><summary>Show the code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Cargar librerias</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://github.com/trinker/pacman">"pacman"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pacman"</span><span class="op">)</span> <span class="co"># instalar pacman</span></span>
+<span>                            <span class="co"># cargar librerias</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,       <span class="co"># Manipulacion de datos </span></span>
+<span>               <span class="va">haven</span>,       <span class="co"># importar datos en .dta o .sav</span></span>
+<span>               <span class="va">car</span>,         <span class="co"># recodificar variables</span></span>
+<span>               <span class="va">sjlabelled</span>,  <span class="co"># etiquetado de variables</span></span>
+<span>               <span class="va">sjmisc</span>,      <span class="co"># descriptivos y frecuencias</span></span>
+<span>               <span class="va">sjPlot</span>,      <span class="co"># tablas, plots y descriptivos</span></span>
+<span>               <span class="va">summarytools</span>,</span>
+<span>               <span class="va">knitr</span>,</span>
+<span>               <span class="va">ggplot2</span>,</span>
+<span>               <span class="va">tidyr</span> <span class="co"># resumen de dataframe</span></span>
+<span>               <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Cargar datos</span></span>
+<span><span class="va">issp</span> <span class="op">&lt;-</span> <span class="fu">read_sav</span><span class="op">(</span><span class="st">"input/data/proc/data_procesada.sav"</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+</section><section id="reproducción" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="reproducción">
+<span class="header-section-number">3.2.2</span> Reproducción</h3>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>issp <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descr</span>(v54) <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Estadísticos descriptivos de v54"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<caption>Estadísticos descriptivos de v54</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">v54</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Mean</td>
-<td style="text-align: right;">2.44</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Std.Dev</td>
-<td style="text-align: right;">1.16</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Min</td>
-<td style="text-align: right;">1.00</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Q1</td>
-<td style="text-align: right;">1.00</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Median</td>
-<td style="text-align: right;">2.00</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Q3</td>
-<td style="text-align: right;">3.00</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Max</td>
-<td style="text-align: right;">5.00</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MAD</td>
-<td style="text-align: right;">1.48</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">IQR</td>
-<td style="text-align: right;">2.00</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CV</td>
-<td style="text-align: right;">0.47</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Skewness</td>
-<td style="text-align: right;">0.36</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SE.Skewness</td>
-<td style="text-align: right;">0.01</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Kurtosis</td>
-<td style="text-align: right;">-0.96</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">N.Valid</td>
-<td style="text-align: right;">122920.00</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">157446.00</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Pct.Valid</td>
-<td style="text-align: right;">78.07</td>
-</tr>
-</tbody>
-</table>
+<details class="code-fold"><summary>Show the code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># --- PASO 1: RECODIFICACIÓN BASADA EN TUS DATOS ---</span></span>
+<span><span class="va">issp_final</span> <span class="op">&lt;-</span> <span class="va">issp</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span></span>
+<span>    <span class="co"># Convertimos los números de clase_diagrama a letras A-E para que scale_fill funcione</span></span>
+<span>    clase_diagrama_txt <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span></span>
+<span>      <span class="va">clase_diagrama</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"A"</span>,</span>
+<span>      <span class="va">clase_diagrama</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="st">"B"</span>,</span>
+<span>      <span class="va">clase_diagrama</span> <span class="op">==</span> <span class="fl">3</span> <span class="op">~</span> <span class="st">"C"</span>,</span>
+<span>      <span class="va">clase_diagrama</span> <span class="op">==</span> <span class="fl">4</span> <span class="op">~</span> <span class="st">"D"</span>,</span>
+<span>      <span class="va">clase_diagrama</span> <span class="op">==</span> <span class="fl">5</span> <span class="op">~</span> <span class="st">"E"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="co"># Traducimos los números de clase_social_5 a sus etiquetas reales</span></span>
+<span>    clase_social_txt <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span></span>
+<span>      <span class="va">clase_social_5</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Higher-grade"</span>,</span>
+<span>      <span class="va">clase_social_5</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="st">"Lower-grade"</span>,</span>
+<span>      <span class="va">clase_social_5</span> <span class="op">==</span> <span class="fl">3</span> <span class="op">~</span> <span class="st">"Intermediate"</span>,</span>
+<span>      <span class="va">clase_social_5</span> <span class="op">==</span> <span class="fl">4</span> <span class="op">~</span> <span class="st">"Self-employed"</span>,</span>
+<span>      <span class="va">clase_social_5</span> <span class="op">==</span> <span class="fl">5</span> <span class="op">~</span> <span class="st">"Working class"</span></span>
+<span>      <span class="co"># Excluimos el 6 (NA) para limpiar el gráfico</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">clase_diagrama_txt</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">WEIGHT</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># --- PASO 2: PREPARAR PANELES ---</span></span>
+<span></span>
+<span><span class="co"># Panel A: Usamos los nombres que acabamos de crear</span></span>
+<span><span class="va">panel_a</span> <span class="op">&lt;-</span> <span class="va">issp_final</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">clase_social_txt</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">clase_social_txt</span>, <span class="va">clase_diagrama_txt</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">WEIGHT</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">'drop'</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">clase_social_txt</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>pct <span class="op">=</span> <span class="va">w</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span>, panel <span class="op">=</span> <span class="st">"(A) Social Class"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">rename</span><span class="op">(</span>eje_x <span class="op">=</span> <span class="va">clase_social_txt</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Panel B: Escala 1-10</span></span>
+<span><span class="va">panel_b</span> <span class="op">&lt;-</span> <span class="va">issp_final</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">escala_topbot</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">escala_topbot</span>, <span class="va">clase_diagrama_txt</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">WEIGHT</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">'drop'</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">escala_topbot</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>pct <span class="op">=</span> <span class="va">w</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span>, panel <span class="op">=</span> <span class="st">"(B) Subjective Social Status"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>eje_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">escala_topbot</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_plot</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="va">panel_a</span>, <span class="va">panel_b</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>eje_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">eje_x</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Higher-grade"</span>, <span class="st">"Lower-grade"</span>, <span class="st">"Intermediate"</span>, </span>
+<span>                                          <span class="st">"Self-Employed"</span>, <span class="st">"Working class"</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># --- PASO 3: EL GRÁFICO FINAL (COLORES REPARADOS) ---</span></span>
+<span></span>
+<span><span class="va">colores_issp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span><span class="op">=</span><span class="st">"#F8766D"</span>, <span class="st">"B"</span><span class="op">=</span><span class="st">"#7CAE00"</span>, <span class="st">"C"</span><span class="op">=</span><span class="st">"#00BA38"</span>, <span class="st">"D"</span><span class="op">=</span><span class="st">"#619CFF"</span>, <span class="st">"E"</span><span class="op">=</span><span class="st">"#C77CFF"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df_plot</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">eje_x</span>, y <span class="op">=</span> <span class="va">pct</span>, fill <span class="op">=</span> <span class="va">clase_diagrama_txt</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>position <span class="op">=</span> <span class="fu">position_stack</span><span class="op">(</span>reverse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"black"</span>, linewidth <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_text</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.1f"</span>, <span class="va">pct</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>            position <span class="op">=</span> <span class="fu">position_stack</span><span class="op">(</span>reverse <span class="op">=</span> <span class="cn">TRUE</span>, vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">panel</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_fill_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">colores_issp</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent_format</a></span><span class="op">(</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Perceived Social Structure"</span>, y <span class="op">=</span> <span class="st">"Percentage (%)"</span>, fill <span class="op">=</span> <span class="st">"Type"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
+<span>        axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-</section>
-<section id="reproducción" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="reproducción"><span class="header-section-number">3.2.2</span> Reproducción</h3>
-<ul>
-<li>Generación de tabla o figura a reproducir.</li>
-</ul>
-</section>
-</section>
-</section>
-<section id="conclusiones" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Conclusiones</h1>
+</div>
+</section></section></section><section id="conclusiones" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> Conclusiones</h1>
 <p>El nivel de reproducibilidad del artículo se evalúa como <em>bajo a medio</em>. Si bien los datos del ISSP están disponibles públicamente, no se dispone del código de análisis ni de una especificación completa de las variables utilizadas en el estudio. Esta falta de información impidió que la reproducción fuera exacta.</p>
 <p>En el intento de reproducir la figura seleccionada, se enfrentaron dos dificultades principales. Primero, el artículo no explicita con claridad qué variables de la base de datos del ISSP fueron utilizadas para construir las categorías de clase social objetiva y estatus social subjetivo. Segundo, al no contar con la sintaxis original de los autores, los resultados obtenidos por el equipo difieren de los reportados en el artículo. Aunque se logró generar un gráfico similar, las diferencias en la categorización de las variables y en el proceso de análisis llevaron a resultados que no coinciden exactamente con los del artículo original.</p>
 <p>En conclusión, el artículo es parcialmente reproducible: los datos existen y son accesibles, pero la falta de código y de documentación detallada sobre el tratamiento de variables limita severamente la posibilidad de replicar los hallazgos sin depender de información no publicada por los autores.</p>
-</section>
-<section id="recomendaciones" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Recomendaciones</h1>
+</section><section id="recomendaciones" class="level1" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> Recomendaciones</h1>
 <p>Para mejorar la reproducibilidad del artículo y facilitar futuros ejercicios de replicación, se sugieren las siguientes acciones:</p>
 <ol type="1">
 <li><p><em>Publicar el código de análisis</em> en un repositorio público (GitHub, Zenodo u OSF), incluyendo todos los scripts utilizados para la limpieza, procesamiento y generación de figuras y tablas.</p></li>
 <li><p><em>Documentar explícitamente las variables utilizadas</em>, indicando los nombres originales en la base de datos del ISSP y las transformaciones aplicadas (recodificaciones, valores perdidos excluidos, etc.).</p></li>
-</ol>
-</section>
-<section id="referencias" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Referencias</h1>
+</ol></section><section id="referencias" class="level1" data-number="6"><h1 data-number="6">
+<span class="header-section-number">6</span> Referencias</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-melli_uncovering_2025" class="csl-entry" role="listitem">
 Melli, G., &amp; Azzollini, L. (2025). Uncovering Misperceptions of Social Inequalities: What Matters Most, Objective Class or Subjective Social Status? <em>Frontiers in Sociology</em>, <em>10</em>. <a href="https://doi.org/10.3389/fsoc.2025.1617413">https://doi.org/10.3389/fsoc.2025.1617413</a>
 </div>
 </div>
-</section>
-<section id="apéndice" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Apéndice</h1>
-<section id="material-suplementario" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="material-suplementario"><span class="header-section-number">7.1</span> Material suplementario</h2>
+</section><section id="apéndice" class="level1" data-number="7"><h1 data-number="7">
+<span class="header-section-number">7</span> Apéndice</h1>
+<section id="material-suplementario" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="material-suplementario">
+<span class="header-section-number">7.1</span> Material suplementario</h2>
 <ul>
 <li>Se incluye un archivo adicional con el código de procesamiento y análisis realizado por el equipo para intentar reproducir los resultados del artículo. Este código se encuentra en el archivo <code>processing/prod_prep.Rmd</code> dentro del repositorio del proyecto.</li>
-</ul>
-</section>
-<section id="código" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="código"><span class="header-section-number">7.2</span> Código</h2>
+</ul></section><section id="código" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="código">
+<span class="header-section-number">7.2</span> Código</h2>
 <ul>
 <li>No se cuenta con código original de los autores, por lo que no es posible incluirlo en esta sección.</li>
-</ul>
-</section>
-</section>
-
-</main>
-<!-- /main column -->
-<script id="quarto-html-after-body" type="application/javascript">
+</ul></section></section></main><!-- /main column --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -799,7 +741,6 @@ Melli, G., &amp; Azzollini, L. (2025). Uncovering Misperceptions of Social Inequ
   });
   </script>
 </div> <!-- /content -->
-
 
 
 

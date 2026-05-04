@@ -283,29 +283,6 @@ data_procesada$clase_social_5 <- factor(data_procesada$clase_social_5,
 
 # 5. Frecuencia final (Usa la nueva variable clase_social_5)
 sjmisc::frq(data_procesada$clase_social_5, weights = data_procesada$WEIGHT, show.na = TRUE)
-o# 1. Creamos el data frame desde frq
-tabla_frq_clase <- as.data.frame(sjmisc::frq(data_procesada$clase_social_5, show.na = TRUE)[[1]])
-
-# 2. Formateamos con kableExtra
-tabla_frq_clase %>%
-  select(val, frq, raw.prc, valid.prc) %>% # Seleccionamos solo lo importante
-  kable(
-    format = "html",
-    col.names = c("Categoría", "Frecuencia (N)", "% Bruto", "% Válido"),
-    digits = 1,
-    caption = "Cuadro 1: Estadísticas descriptivas de la variable de clase"
-  ) %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  add_indent(c(1:5)) %>% # Indenta las clases para que se vea ordenado
-  row_spec(0, bold = T, color = "white", background = "#446e9b") %>% # Encabezado estilo UCH
-  footnote(general = "Fuente: Elaboración propia basada en ISSP (1992-2019).")
-# # Ver cuáles son los ISCO que más generan NA
-# data_procesada %>% 
-#   filter(is.na(clase_social_5) & !is.na(ISCO88)) %>% 
-#   group_by(ISCO88) %>% 
-#   tally(sort = TRUE) %>% 
-#   head(10)
-
 
 ```
 
@@ -382,8 +359,6 @@ data_procesada <- data_procesada %>%
     sexo = SEX,
     edad = AGE,
   )
-
-
 ```
 
 
@@ -400,5 +375,5 @@ view_df(data_procesada)
 # Guardar datos
 
 ```{r}
-save(data_procesada,file = "input/data/proc/data_procesada.Rdata")
+write_sav(data_procesada, "input/data/proc/data_procesada.sav")
 ```
