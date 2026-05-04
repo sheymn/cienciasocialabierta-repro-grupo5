@@ -54,7 +54,9 @@ pacman::p_load(dplyr,       # Manipulacion de datos
                sjmisc,      # descriptivos y frecuencias
                sjPlot,      # tablas, plots y descriptivos
                summarytools,
-               occupar # resumen de dataframe
+               occupar,
+               knitr, 
+               kableExtra # resumen de dataframe
                )
 ```
 
@@ -84,8 +86,26 @@ data_procesada<- data%>%
          )
 
 # Valores perdidos como NAs
-data <- data %>%
+data_procesada <- data_procesada %>%
   mutate(across(everything(), ~ ifelse(. %in% c(-9, -8, -7, -4, -3, -1), NA, .)))
+
+# FIltrar solo las olas entre 1992 y 2019
+data_procesada <- data_procesada %>%
+  filter(as.numeric(as.character(year)) >= 1992 & 
+         as.numeric(as.character(year)) <= 2019)
+
+
+data_procesada <- data_procesada %>%
+  # Filtros obligatorios según Tabla 2 (variables sin fila NA)
+  filter(AGE >= 18 & AGE <= 65) %>% 
+  filter(!is.na(TOPBOT), TOPBOT > 0) %>% 
+  filter(!is.na(v54), v54 > 0)
+
+# El resto de las variables (Clase, Ingreso, Educación) 
+# DEBEN quedarse con sus NA, no las filtres.
+
+sjmisc::frq(data_final$year, weights = data_final$WEIGHT)
+
 ```
 
 # Preparación
@@ -218,51 +238,81 @@ sjmisc::descr(data$v66)
 # ESeC (Clase social objetva)
 
 ```{r}
-# 1. Calculamos la ESeC
+# 1. Transformación binaria (Asegura que SELFEMP y WRKSUP sean 0 y 1)
+data_procesada <- data_procesada %>%
+  mutate(
+    SELFEMP_bin = case_when(
+      SELFEMP == 1 ~ 1,
+      SELFEMP == 2 ~ 0,
+      TRUE ~ NA_real_
+    ),
+    WRKSUP_bin = case_when(
+      WRKSUP == 1 ~ 1,
+      WRKSUP == 2 ~ 0,
+      TRUE ~ NA_real_
+    )
+  )
+
+# 2. Cálculo de ESeC y extracción del número
 data_procesada <- data_procesada %>%
   mutate(
     esec_list = isco88toESeC(
       isco88 = as.numeric(as.character(ISCO88)),
-      self.employed = as.numeric(as.character(SELFEMP)),
-      supervisor = as.numeric(as.character(WRKSUP)),
-      employed = 1, unemployed = 0, n.employees = 0, n.classes = 10
+      self.employed = SELFEMP_bin,
+      supervisor = WRKSUP_bin,
+      employed = 1, unemployed = 0, n.employees = 1, n.classes = 10
     ),
-    
-    # EXTRAER EL CÓDIGO (La parte "difícil" hecha simple)
-    # Usamos unlist para sacar el primer valor de cada lista de forma masiva
+    # EXTRAER EL NÚMERO ANTES DE HACER CUALQUIER OTRA COSA
     esec_num = as.numeric(purrr::map_dbl(esec_list, 1)) 
   )
 
-# 2. Colapsar a esquema de 5 clases
+# 3. Recodificación a 5 clases (USANDO esec_num, NO esec_list)
 data_procesada <- data_procesada %>%
-  mutate(clase_social_5 = case_match(esec_num,
-    1       ~ "Higher-grade managers/prof",
-    2       ~ "Lower-grade managers/prof",
-    c(3, 6) ~ "Intermediate occupations",
-    c(4, 5) ~ "Self-employed/Small employers",
-    c(7, 8, 9) ~ "Working class",
-    .default = NAs
+  mutate(clase_social_5 = case_when(
+    esec_num == 1           ~ "Higher-grade managers/prof",
+    esec_num == 2           ~ "Lower-grade managers/prof",
+    esec_num %in% c(3, 6)   ~ "Intermediate occupations",
+    esec_num %in% c(4, 5)   ~ "Self-employed/Small employers",
+    esec_num %in% c(7, 8, 9) ~ "Working class",
+    TRUE                    ~ "NA" 
   ))
 
-# ordenar valores
+# 4. Convertir a factor de forma segura
 data_procesada$clase_social_5 <- factor(data_procesada$clase_social_5, 
   levels = c("Higher-grade managers/prof", 
              "Lower-grade managers/prof", 
              "Intermediate occupations", 
              "Self-employed/Small employers", 
-             "Working class"))
+             "Working class",
+             "NA"))
 
-# Frecuencia
-sjmisc::frq(data_procesada$clase_social_5, show.na = TRUE)
+# 5. Frecuencia final (Usa la nueva variable clase_social_5)
+sjmisc::frq(data_procesada$clase_social_5, weights = data_procesada$WEIGHT, show.na = TRUE)
+o# 1. Creamos el data frame desde frq
+tabla_frq_clase <- as.data.frame(sjmisc::frq(data_procesada$clase_social_5, show.na = TRUE)[[1]])
 
+# 2. Formateamos con kableExtra
+tabla_frq_clase %>%
+  select(val, frq, raw.prc, valid.prc) %>% # Seleccionamos solo lo importante
+  kable(
+    format = "html",
+    col.names = c("Categoría", "Frecuencia (N)", "% Bruto", "% Válido"),
+    digits = 1,
+    caption = "Cuadro 1: Estadísticas descriptivas de la variable de clase"
+  ) %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  add_indent(c(1:5)) %>% # Indenta las clases para que se vea ordenado
+  row_spec(0, bold = T, color = "white", background = "#446e9b") %>% # Encabezado estilo UCH
+  footnote(general = "Fuente: Elaboración propia basada en ISSP (1992-2019).")
 # # Ver cuáles son los ISCO que más generan NA
 # data_procesada %>% 
 #   filter(is.na(clase_social_5) & !is.na(ISCO88)) %>% 
 #   group_by(ISCO88) %>% 
 #   tally(sort = TRUE) %>% 
 #   head(10)
-```
 
+
+```
 
 # Recodificación de v66 y v64 en clase social de origen
 
