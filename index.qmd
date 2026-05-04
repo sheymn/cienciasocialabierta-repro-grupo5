@@ -52,7 +52,7 @@ format:
     geometry: margin=2.5cm
 editor_options: 
   chunk_output_type: console
-bibliography: "input/bbib/cienciasocialabierta-repro-grupo5.bib"
+bibliography: "input/bib/cienciasocialabierta-repro-grupo5.bib"  
 csl: "input/bib/apa.csl"
 ---
 
@@ -62,7 +62,7 @@ csl: "input/bib/apa.csl"
 
 ## Artículo seleccionado
 
-Se seleccionó el siguiente artículo para el ejercicio de reproducibilidad: Uncovering misperceptions of social inequalities: what matters most, objective class or subjective social status? El cuál, fue realizado por Giacomo Melli y Leo Azzollini, sociologos italianos. El artículo se publicó en la revista *Frontiers in Sociology* en el año 2025. Y su DOI es: https://doi.org/10.3389/fsoc.2025.1617413 
+Se seleccionó el siguiente artículo para el ejercicio de reproducibilidad: Uncovering misperceptions of social inequalities: what matters most, objective class or subjective social status? E la rtículo corresponde a @melli_uncovering_2025. El cuál, fue realizado por Giacomo Melli y Leo Azzollini, sociologos italianos. El artículo se publicó en la revista *Frontiers in Sociology* en el año 2025. Y su DOI es: https://doi.org/10.3389/fsoc.2025.1617413 
 
 ## Resumen del artículo seleccionado
 
@@ -76,14 +76,19 @@ El artículo fue seleccionado porque cumple con al menos dos criterios clave par
 
 Análisis detallado del artículo seleccionado, evaluando los siguientes aspectos:
 
-  -   **Disponibilidad de datos**: ¿El artículo proporciona acceso a los datos utilizados en el estudio? Si no es así, ¿qué dificultades se enfrentaron para obtener los datos?
-  -   **Disponibilidad de código**: ¿El artículo proporciona acceso al código utilizado para el análisis? Si es así, ¿cómo se puede acceder?
-  -   **Documentación**: ¿El artículo incluye una descripción clara de los métodos y procedimientos utilizados en el estudio? ¿Es suficiente para que otro investigador pueda replicar el estudio?
-  -   **Transparencia**: ¿El artículo proporciona información sobre los posibles conflictos de interés, financiamiento, y otros aspectos relacionados con la transparencia de la investigación?   
+  -   **Disponibilidad de datos**: 
+El artículo indica que los datos utilizados provienen del International Social Survey Programme (ISSP), específicamente de los módulos de desigualdad social de los años 1992, 1999, 2009 y 2019. Los datos se encuentran disponibles públicamente en el repositorio GESIS. El equipo accedió a la base de datos sin mayores dificultades, si bien el artículo no entrega un enlace directo a la versión exacta de los datos, estos son accesibles siguiendo los procedimientos estándar del ISSP.
+
+  -   **Disponibilidad de código**: 
+  El artículo no incluye el código de análisis utilizado por los autores. Se contactó a los autores por correo electrónico para solicitar los scripts empleados en la limpieza, procesamiento y generación de resultados y figuras. Hasta la fecha no se ha obtenido respuesta. La ausencia del código limita la posibilidad de una reproducción exacta del estudio, ya que no es posible verificar los pasos analíticos específicos ni las decisiones de recodificación tomadas por los autores
+
+  -   **Documentación**: 
+  El artículo describe los métodos y procedimientos estadísticos de forma general, incluyendo el uso de modelos ordinales generalizados y la inclusión de efectos fijos por país-ola. Sin embargo, la documentación presenta una limitación importante: el artículo no especifica qué variables de la base de datos del ISSP fueron utilizadas para construir los indicadores de "clase social objetiva" y "estatus social subjetivo". Tampoco se detallan las recodificaciones aplicadas ni los criterios para excluir valores perdidos. Esta falta de información obligó al equipo a tomar decisiones propias sobre la selección y transformación de variables. Por tanto, la documentación es insuficiente para una replicación exacta.
+
+  -   **Transparencia**: 
+  El artículo declara que la investigación contó con financiamiento del Departamento de Sociología e Investigación Social de la Universidad de Trento. Además, los autores señalan no tener conflictos de interés. La revista Frontiers in Sociology sigue estándares de transparencia que exigen declarar estas cuestiones, lo cual fue cumplido por los autores.   
 
 # Análisis reproducible
-
-Seleccionar un resultado específico del artículo (por ejemplo, una tabla de resultados o una figura) y tratar de reproducirlo utilizando los datos y el código proporcionados. Documentar el proceso de reproducción, incluyendo cualquier dificultad encontrada y cómo se resolvió.
 
 ## Resultado a reproducir
 
@@ -141,11 +146,19 @@ issp %>%
 
 # Conclusiones
 
-Basándose en el análisis realizado, escriban una conclusión sobre el nivel de reproducibilidad del artículo seleccionado.
+El nivel de reproducibilidad del artículo se evalúa como *bajo a medio*. Si bien los datos del ISSP están disponibles públicamente, no se dispone del código de análisis ni de una especificación completa de las variables utilizadas en el estudio. Esta falta de información impidió que la reproducción fuera exacta.
+
+En el intento de reproducir la figura seleccionada, se enfrentaron dos dificultades principales. Primero, el artículo no explicita con claridad qué variables de la base de datos del ISSP fueron utilizadas para construir las categorías de clase social objetiva y estatus social subjetivo. Segundo, al no contar con la sintaxis original de los autores, los resultados obtenidos por el equipo difieren de los reportados en el artículo. Aunque se logró generar un gráfico similar, las diferencias en la categorización de las variables y en el proceso de análisis llevaron a resultados que no coinciden exactamente con los del artículo original.
+
+En conclusión, el artículo es parcialmente reproducible: los datos existen y son accesibles, pero la falta de código y de documentación detallada sobre el tratamiento de variables limita severamente la posibilidad de replicar los hallazgos sin depender de información no publicada por los autores. 
 
 # Recomendaciones
 
-Recomendaciones para mejorar la reproducibilidad del artículo, si es necesario.
+Para mejorar la reproducibilidad del artículo y facilitar futuros ejercicios de replicación, se sugieren las siguientes acciones:
+
+1. *Publicar el código de análisis* en un repositorio público (GitHub, Zenodo u OSF), incluyendo todos los scripts utilizados para la limpieza, procesamiento y generación de figuras y tablas.
+
+2. *Documentar explícitamente las variables utilizadas*, indicando los nombres originales en la base de datos del ISSP y las transformaciones aplicadas (recodificaciones, valores perdidos excluidos, etc.).
 
 # Referencias
 
@@ -156,10 +169,10 @@ Recomendaciones para mejorar la reproducibilidad del artículo, si es necesario.
 
 ## Material suplementario
 
-- Incluyan aquí detalles metodológicos adicionales, en caso de ser necesario
+-   Se incluye un archivo adicional con el código de procesamiento y análisis realizado por el equipo para intentar reproducir los resultados del artículo. Este código se encuentra en el archivo `processing/prod_prep.Rmd` dentro del repositorio del proyecto.
 
 ## Código
 
-- Incluir acá el código original, en caso de estar disponible.
+-   No se cuenta con código original de los autores, por lo que no es posible incluirlo en esta sección. 
 
 

@@ -12,6 +12,7 @@ output:
     number_sections: yes
 editor_options: 
   chunk_output_type: console
+execute-dir: ..
 ---
 
 # Setup
@@ -22,6 +23,7 @@ knitr::opts_chunk$set(warning = FALSE,
                       echo = TRUE 
                       )
 options(scipen=9999) # desactivar notacion cientifica
+knitr::opts_knit$set(root.dir = "..")
 ```
 
 ```{css, echo=FALSE}
@@ -84,7 +86,7 @@ data_procesada<- data%>%
          )
 
 # Valores perdidos como NAs
-data <- data %>%
+data_procesada <- data_procesada %>%
   mutate(across(everything(), ~ ifelse(. %in% c(-9, -8, -7, -4, -3, -1), NA, .)))
 ```
 
@@ -105,7 +107,7 @@ En esta sección se realizará la preparación de datos. Se sugiere seguir los s
 ### Diagrama de clases sociales
 ```{r clases_diagrama}
 
-data$v54 <- as.numeric(haven::zap_labels(data$v54))
+data_procesada$v54 <- as.numeric(haven::zap_labels(data_procesada$v54))
 
 #data$v54[data$v54 %in% c(-9, -8, -7, -4, -3, -1)] <- NA
 
@@ -206,13 +208,6 @@ sjmisc::descr(data$v66)
 
 ```
 
-# Seleccionar variables
-
-```{r seleccionar variables} 
-
-
-
-```
 
 
 # ESeC (Clase social objetva)
@@ -357,6 +352,3 @@ view_df(data_procesada)
 ```{r}
 save(data_procesada,file = "input/data/proc/data_procesada.Rdata")
 ```
-
-
-
