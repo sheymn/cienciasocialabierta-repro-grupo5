@@ -1,7 +1,7 @@
 ---
 title: "Reporte de Reproducibilidad"
 subtitle: "Artículo: *Uncovering misperceptions of social inequalities: what matters most, objective class or subjective social status?*
- <br><a href='https://github.com/sheymn/cienciasocialabierta-repro' target='_blank' ><i class='bi bi-github'></i></a>" # reemplazar con dirección al repositorio del proyecto
+ <br><a href='https://github.com/sheymn/cienciasocialabierta-repro-grupo5' target='_blank' ><i class='bi bi-github'></i></a>" # reemplazar con dirección al repositorio del proyecto
 author:
   - name: Amanda Rojo Ávila
     email: amanda.rojo@ug.uchile.cl 
@@ -12,7 +12,7 @@ author:
     affiliations:
       - ref: 1
   - name: Elena Yáñez Rodríguez
-    email: mail@mail.com 
+    email: elena.yanez@ug.uchile.cl
     affiliations:
       - ref: 1 
 affiliations: 
@@ -50,10 +50,12 @@ format:
     toc: true
     number-sections: true
     geometry: margin=2.5cm
+    pdf-engine: pdflatex
 editor_options: 
   chunk_output_type: console
 bibliography: "input/bib/cienciasocialabierta-repro-grupo5.bib"  
 csl: "input/bib/apa.csl"
+
 ---
 
 
