@@ -107,6 +107,30 @@ La figura que se busca reproducir corresponde a un gráfico de barras apiladas q
 
 - Procesamiento de datos: Se encuentra en el archivo `processing/prod_prep.Rmd` dentro del repositorio del proyecto. En este archivo se incluye el código de procesamiento y análisis realizado por el equipo para intentar reproducir los resultados del artículo.
 
+## Librerías
+
+```{r}
+# Cargar librerias
+if (!require("pacman")) install.packages("pacman") # instalar pacman
+                            # cargar librerias
+pacman::p_load(dplyr,       # Manipulacion de datos 
+               haven,       # importar datos en .dta o .sav
+               car,         # recodificar variables
+               sjlabelled,  # etiquetado de variables
+               sjmisc,      # descriptivos y frecuencias
+               sjPlot,      # tablas, plots y descriptivos
+               summarytools,
+               knitr,
+               ggplot2,
+               tidyr # resumen de dataframe
+               )
+
+# Cargar datos
+issp <- read_sav("input/data/proc/data_procesada.sav")
+
+```
+
+
 
 
 ### Reproducción
