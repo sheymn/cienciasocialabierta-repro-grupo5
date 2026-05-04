@@ -124,23 +124,70 @@ pacman::p_load(dplyr,       # Manipulacion de datos
                )
 
 # Cargar datos
-issp <- read_sav("input/data/original/ZA8790_v1-0-0.sav")
+issp <- read_sav("input/data/proc/data_procesada.sav")
 
-# Valores perdidos
-issp <- issp %>%
-  mutate(across(everything(), ~ ifelse(. %in% c(-9, -8, -7, -4, -3, -1), NA, .)))
 ```
 
 
-```{r clases_diagrama}
-#| warning: false
-
-issp %>%
-  descr(v54) %>%
-  as.data.frame() %>%
-  kable(digits = 2, caption = "Estadísticos descriptivos de v54")
-```
 ### Reproducción
+
+```{r}
+
+# 1. Preparación de la base: Convertir etiquetas de SPSS a factores de R
+issp_prep <- issp %>%
+  mutate(clase_diagrama = as_factor(clase_diagrama))
+
+# 2. Crear datos para Panel A (Clase Social)
+# Forzamos el orden de las categorías para que coincida con la imagen
+niveles_clase <- c("Higher-grade", "Lower-grade", "Intermediate", "Self-Employed", "Working Class")
+
+panel_a <- issp_prep %>%
+  select(clase_social_5, clase_diagrama, WEIGHT) %>%
+  filter(!is.na(clase_social_5), !is.na(clase_diagrama)) %>%
+  mutate(eje_x = factor(clase_social_5, levels = niveles_clase),
+         panel = "(A)\nSocial Class") %>%
+  select(-clase_social_5)
+
+# 3. Crear datos para Panel B (Escala 1-10)
+panel_b <- issp_prep %>%
+  select(escala_topbot, clase_diagrama, WEIGHT) %>%
+  filter(!is.na(escala_topbot), !is.na(clase_diagrama)) %>%
+  mutate(eje_x = factor(escala_topbot, levels = 1:10),
+         panel = "(B)\nSubjective Social Status") %>%
+  select(-escala_topbot)
+
+# 4. Unir y Calcular Porcentajes Ponderados manualmente
+df_final <- bind_rows(panel_a, panel_b) %>%
+  group_by(panel, eje_x, clase_diagrama) %>%
+  summarise(suma_pesos = sum(WEIGHT, na.rm = TRUE), .groups = 'drop') %>%
+  group_by(panel, eje_x) %>%
+  mutate(porcentaje = suma_pesos / sum(suma_pesos))
+
+# 5. Generar el Gráfico Replicado
+grafico_issp <- ggplot(df_final, aes(x = eje_x, y = porcentaje, fill = clase_diagrama)) +
+  # Usamos geom_col (equivale a bar identity) para evitar errores de stat_count
+  geom_col(position = position_stack(reverse = TRUE), color = "black", linewidth = 0.2) +
+  # Etiquetas de texto directas desde el cálculo
+  geom_text(aes(label = sprintf("%.1f", porcentaje * 100)), 
+            position = position_stack(reverse = TRUE, vjust = 0.5), 
+            size = 3) +
+  facet_wrap(~panel, scales = "free_x") +
+  # Paleta de colores similar a la original
+  scale_fill_manual(values = c("A" = "#F8766D", "B" = "#7CAE00", 
+                               "C" = "#00BA38", "D" = "#619CFF", "E" = "#C77CFF")) +
+  scale_y_continuous(labels = scales::percent_format(), expand = c(0,0)) +
+  labs(x = "Perceived Social Structure", 
+       y = "Percentage (%)", 
+       fill = "Type") +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        strip.text = element_text(face = "bold", size = 11),
+        panel.grid.major.x = element_blank())
+
+# Visualizar
+print(grafico_issp)
+
+```
 
 - Generación de tabla o figura a reproducir.
 
