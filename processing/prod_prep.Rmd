@@ -104,7 +104,7 @@ data_procesada <- data_procesada %>%
   filter(!is.na(v54), v54 > 0)
 
 # El resto de las variables (Clase, Ingreso, Educación) 
-# DEBEN quedarse con sus NA, no las filtres.
+
 
 sjmisc::frq(data_final$year, weights = data_final$WEIGHT)
 
